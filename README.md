@@ -9,7 +9,7 @@ In real-world scenarios, due to a series of image degradations, obtaining high-q
 
 <p align="center"><img src="imgs/overview.png" width="95%"></p>
 
-## 3. Comparison of other methods in track 1 of the Bracketing Image Restoration and Enhancement Challenge.
+## 3. Comparison of other methods in track 2 of the Bracketing Image Restoration and Enhancement Challenge.
 
 <p align="center"><img src="imgs/result.png" width="95%"></p>
 
