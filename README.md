@@ -21,8 +21,11 @@ In real-world scenarios, due to a series of image degradations, obtaining high-q
 
 ## 5.Citation
 ```
-@inproceedings{,
- 
+@article{chen2024bracketing,
+  title={Bracketing Image Restoration and Enhancement with High-Low Frequency Decomposition},
+  author={Chen, Genggeng and Dai, Kexin and Yang, Kangzhen and Hu, Tao and Chen, Xiangyu and Yang, Yongqing and Dong, Wei and Wu, Peng and Zhang, Yanning and Yan, Qingsen},
+  journal={arXiv preprint arXiv:2404.13537},
+  year={2024}
 }
 ```
 
