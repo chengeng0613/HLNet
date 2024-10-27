@@ -29,7 +29,7 @@ class CropplusDataset(BaseDataset):
 
             self._getitem = self._getitem_test
             self.names, self.meta_dirs, self.raw_dirs, self.gt_dirs = self._get_image_dirtest(self.root, split,
-                                                                                          name='Test')
+                                                                                          name='NTIRE_Test')
             self.len_data = len(self.names)
             self.meta_data = [0] * len(self.names)
             self.raw_images = [0] * len(self.names)
@@ -64,14 +64,11 @@ class CropplusDataset(BaseDataset):
                 'fname': self.names[idx]}
 
     def _getitem_test(self, idx):
-
         raws = torch.from_numpy(np.float32(np.array(self.raw_images[idx]))) / (2**10 - 1)
         meta = self._process_metadata(self.meta_data[idx])
-        gt_images = np.load(self.gt_dirs[idx], allow_pickle=True).transpose(2, 0, 1)
-        gt = torch.from_numpy(np.float32(gt_images))
 
         return {'meta': meta,
-                'gt': gt,
+                'gt': raws[0],
                 'raws': raws,
                 'fname': self.names[idx]}
 
@@ -108,11 +105,11 @@ class CropplusDataset(BaseDataset):
                 image_names.append(scene_file + '-' + image_file)
                 meta_dirs.append(opj(image_root, 'metadata.npy'))
                 raw_dirs.append(self._read_raw_pathtest(image_root))
-                # if split == 'train':
-                #     gt_dirs.append(opj(image_root, 'raw_gt.npy'))
-                # elif split == 'test':
-                #     gt_dirs = []
-                gt_dirs.append(opj(image_root, 'raw_gt.npy'))
+                if split == 'train':
+                    gt_dirs.append(opj(image_root, 'raw_gt.npy'))
+                elif split == 'test':
+                    gt_dirs = []
+
         return image_names, meta_dirs, raw_dirs, gt_dirs
 
 
