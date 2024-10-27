@@ -1,5 +1,6 @@
 import torch
 
+from .HFDB import UN
 from .SCConv import ScConv
 from .base_model import BaseModel
 from . import networks as N
@@ -9,8 +10,7 @@ from . import losses as L
 import torch.nn.functional as F
 import torchvision.ops as ops
 from util.util import mu_tonemap
-from .denoise import DenoiseNetwork
-from .hpb import UN
+
 
 
 # For BracketIRE+ Task
@@ -282,14 +282,9 @@ class ResidualBlocksWithInputConv1(nn.Module):
         main.append(nn.Conv2d(in_channels, out_channels, 3, 1, 1, bias=True))
         main.append(nn.LeakyReLU(negative_slope=0.1, inplace=True))
 
-        # residual blocks
-        # main.append(
-        #     N.make_layer(
-        #         ResidualBlockNoBN1, num_blocks, mid_channels=out_channels))
+
         main.append(UN(out_channels))
-        # main.append(
-        #     N.make_layer(
-        #         ResidualBlockNoBN1, num_blocks, mid_channels=out_channels))
+
 
 
         self.main = nn.Sequential(*main)
