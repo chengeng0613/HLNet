@@ -3,7 +3,7 @@ echo "Start to test the model...."
 device="2"
 
 
-dataroot="/public/home/qsyan/NTIRE2024/track2/Crop2_all64"  # including 'Train' and 'NTIRE_Val' floders
+dataroot="E:\dataset\NTIRE\track2\Crop2_all64"  # including 'Train' and 'NTIRE_Val' floders
 name="track2"
 
 python test.py \

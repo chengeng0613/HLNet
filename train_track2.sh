@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Start to train the model...."
-dataroot="/public/home/qsyan/NTIRE2024/track2/Crop2_all64"  # including 'Train' and 'NTIRE_Val' floders
+dataroot="E:\dataset\NTIRE\track2\Crop2_all64"  # including 'Train' and 'NTIRE_Val' floders
 
-device='3'
+device='0'
 name="track2"
 #load_path="./spynet/spynet_20210409-c6c1bd09.pth" # path of pre-trained model for BracketIRE task ./spynet/spynet_20210409-c6c1bd09.pth
 
