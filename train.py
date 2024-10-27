@@ -35,9 +35,9 @@ if __name__ == '__main__':
 	dataset_size_train = len(dataset_train)
 	print('The number of training images = %d' % dataset_size_train)
 
-	dataset_val = create_dataset(opt.dataset_name, 'test', opt)
-	dataset_size_val = len(dataset_val)
-	print('The number of val images = %d' % dataset_size_val)
+	# dataset_val = create_dataset(opt.dataset_name, 'test', opt)
+	# dataset_size_val = len(dataset_val)
+	# print('The number of val images = %d' % dataset_size_val)
 
 	model = create_model(opt)
 	model.setup(opt)
@@ -82,23 +82,23 @@ if __name__ == '__main__':
 				 time.time() - epoch_start_time))
 		model.update_learning_rate(epoch)
 
-		# val
-		if opt.calc_metrics:
-			model.eval()
-			val_iter_time = time.time()
-			tqdm_val = tqdm(dataset_val)
-			psnr = [0.0] * dataset_size_val
-			time_val = 0
-			for i, data in enumerate(tqdm_val):
-				model.set_input(data)
-				time_val_start = time.time()
-				with torch.no_grad():
-					model.test()
-				time_val += time.time() - time_val_start
-				res = model.get_current_visuals()
-				psnr[i] = calc_psnr(model.post_process(res['data_gt']), model.post_process(res['data_out']))
-				# if opt.save_imgs:
-				#     visualizer.display_current_results('val', res, epoch)
-			visualizer.print_psnr(epoch, opt.niter + opt.niter_decay, time_val, np.mean(psnr))
+		# # val
+		# if opt.calc_metrics:
+		# 	model.eval()
+		# 	val_iter_time = time.time()
+		# 	tqdm_val = tqdm(dataset_val)
+		# 	psnr = [0.0] * dataset_size_val
+		# 	time_val = 0
+		# 	for i, data in enumerate(tqdm_val):
+		# 		model.set_input(data)
+		# 		time_val_start = time.time()
+		# 		with torch.no_grad():
+		# 			model.test()
+		# 		time_val += time.time() - time_val_start
+		# 		res = model.get_current_visuals()
+		# 		psnr[i] = calc_psnr(model.post_process(res['data_gt']), model.post_process(res['data_out']))
+		# 		# if opt.save_imgs:
+		# 		#     visualizer.display_current_results('val', res, epoch)
+		# 	visualizer.print_psnr(epoch, opt.niter + opt.niter_decay, time_val, np.mean(psnr))
 
 		sys.stdout.flush()
